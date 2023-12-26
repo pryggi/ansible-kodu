@@ -5,11 +5,11 @@
 
   tasks:
 
-  - name: Check disk usage and grep for /dev/sda1
+  - name: Configure screenrc
     shell: 
-      cmd: "df -h | grep /dev/sda1"
-    register: disk_usage
+      cmd: "echo 'defscrollback 20000' >> ~/.screenrc"
+    register: comnd
 
-  - name: Display PS output.
+  - name: Display output.
     debug:
-      msg: "{{ disk_usage.stdout_lines }}"
+      msg: "{{ comnd.stdout_lines }}"
