@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+  - name: Check if a process is running
+    ansible.builtin.shell: ps aux | grep {{ comnd | quote }} | grep -v grep
+    register: process_status
+    failed_when: process_status.rc != 0
+
+  - name: Display process status
+    ansible.builtin.debug:
+     var: process_status.stdout_lines
