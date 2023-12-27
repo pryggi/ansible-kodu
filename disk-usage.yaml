@@ -7,7 +7,7 @@
 
   - name: Check disk usage and grep for /dev/sda1
     shell: 
-      cmd: "df -h" #| grep /dev/sda1"
+      cmd: "df -h" | grep boot\|root"
     register: disk_usage
 
   - name: Display PS output.
