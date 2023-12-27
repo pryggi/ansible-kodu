@@ -1,6 +1,6 @@
 - hosts: all
   tasks:
   - name: Install package and capture the Output
-    apt: name= state=present update_cache=true
+    apt: name={{ package | quote }} state=present update_cache=true
     register: apt_output
   - debug: var=apt_output
