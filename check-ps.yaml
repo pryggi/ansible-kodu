@@ -6,7 +6,7 @@
   tasks:
 
   - name: Check if a process is running
-    ansible.builtin.shell: ps aux | grep {{ comnd | quote }} | grep -v grep
+    ansible.builtin.shell: ps aux | grep {{ command | quote }} | grep -v grep
     register: process_status
     failed_when: process_status.rc != 0
 
