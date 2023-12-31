@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+  - name: Run command
+    shell: |
+      /home/priit/chia-blockchain/chia_stop.sh &&
+      /home/priit/chia-blockchain/chia_startup.sh
