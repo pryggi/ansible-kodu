@@ -9,4 +9,5 @@
     - name: Update and upgrade apt packages
       apt:
         update_cache: yes
+        autoremove: no
         upgrade: yes
