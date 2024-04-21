@@ -1,1 +1,15 @@
-disk-usage.yaml
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+  - name: Check disk usage and grep for /dev/sda1
+    shell: 
+      cmd: "df -h | grep -e boot -e root"
+    register: disk_usage
+
+  - name: Display PS output.
+    debug:
+      msg: "{{ disk_usage.stdout_lines }}"
