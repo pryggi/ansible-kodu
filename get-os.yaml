@@ -5,8 +5,8 @@
 
   tasks:
 
-  - name: Cat OS-Release
-    ansible.builtin.shell: cat /etc/os-release
+  - name: Hostname and OS-Release
+    ansible.builtin.shell: hostnamectl
     register: process_status
     failed_when: process_status.rc != 0
 
