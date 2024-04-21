@@ -5,11 +5,11 @@
 
   tasks:
 
-  - name: Check disk usage and grep for /dev/sda1
-    shell: 
-      cmd: "df -h | grep -e boot -e root"
-    register: disk_usage
+  - name: Check disk usage and grep for 
+    ansible.builtin.shell: df -h | grep -e boot -e root
+    register: process_status
+    failed_when: process_status.rc != 0
 
-  - name: Display PS output.
-    debug:
-      msg: "{{ disk_usage.stdout_lines }}"
+  - name: Display process status
+    ansible.builtin.debug:
+     var: process_status.stdout_lines
