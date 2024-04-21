@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+
+  - name: Cat OS-Release
+    ansible.builtin.shell: cat /etc/os-release
+    register: process_status
+    failed_when: process_status.rc != 0
+
+  - name: Display process status
+    ansible.builtin.debug:
+     var: process_status.stdout_lines
