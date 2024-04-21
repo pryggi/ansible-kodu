@@ -1,12 +1,12 @@
 ---
 - hosts: all
-  become: false
+  become: true
   gather_facts: true
 
   tasks:
 
   - name: Check disk usage and grep for 
-    ansible.builtin.shell: df -h | grep -e boot -e root
+    ansible.builtin.shell: df -h 
     register: process_status
     failed_when: process_status.rc != 0
 
