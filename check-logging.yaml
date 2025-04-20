@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+  - name: Check if logging is configured
+    ansible.builtin.shell: grep -r "10.1.0.47" /etc
+    register: process_status
+    failed_when: process_status.rc != 0
+
+  - name: Display process status
+    ansible.builtin.debug:
+     var: process_status.stdout_lines
